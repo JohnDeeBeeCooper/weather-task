@@ -2,7 +2,6 @@ export const data = {
   state: {
     error: false,
     forecast: {},
-    loading: false
   },
   reducers: {
     getData(state, payload) {

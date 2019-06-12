@@ -1,18 +1,17 @@
 import React from "react";
-import { Card as AntdCard } from "antd";
-import styled from "styled-components";
+import { StyledCard } from "./Card.styles";
+import "../../../assets/svg";
 
 const Card = props => {
+  console.log(props);
   return (
     <StyledCard>
-      <p>test</p>
+      <svg width="80" heigth="80">
+        <use xlinkHref={"#cloudy"} />
+      </svg>
+      <p>{props.temp}</p>
     </StyledCard>
   );
 };
 
-const StyledCard = styled(AntdCard)`
-  :hover {
-    transform: scale(1.05);
-  }
-`;
 export default Card;

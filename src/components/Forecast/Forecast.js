@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Card from "./Card/Card";
 import { Main, Container, Content } from "./Forecast.styles";
 import { Layout, Spin } from "antd";
+import filterData from "../../utils/filterData";
 
 class Forecast extends Component {
   componentDidMount() {
@@ -24,14 +25,17 @@ class Forecast extends Component {
   }
   renderForecast() {
     const { Header, Footer } = Layout;
+    const newData = filterData(this.props.forecast.list);
     return (
       <Main>
         <Container>
           <Header>
-            <p>{this.props.forecast.city.name}</p>test
+            <p>{this.props.forecast.city.name}</p>
           </Header>
           <Content>
-            {this.props.forecast.list.map(item => <Card />) || "test"}
+            {newData.map((item, id) => (
+              <Card key={id} temp={item.main.temp} />
+            ))}
           </Content>
           <Footer>
             <p>Footer</p>
