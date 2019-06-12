@@ -1,7 +1,7 @@
 import { init } from "@rematch/core";
-import reducer from "./store/reducers/";
+import * as models from "./store/models";
 
 const store = init({
-  reducer
+  models
 });
 export default store;

@@ -1,7 +1,8 @@
 import React from "react";
+import Forecast from "./Forecast/Forecast";
 
 const App = () => {
-  return <div>test</div>;
+  return <Forecast />;
 };
 
 export default App;
