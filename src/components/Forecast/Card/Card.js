@@ -1,15 +1,21 @@
 import React from "react";
-import { StyledCard } from "./Card.styles";
+import { StyledCard, Svg } from "./Card.styles";
 import "../../../assets/svg";
+import changeMeasure from "../../../utils/changeMeasure";
 
 const Card = props => {
-  console.log(props);
+  const date = new Date(props.date * 1000);
+  const hours = date.getHours(props.date);
+  const minutes = date.getMinutes(props.date);
+  console.log(date);
+  const temp = changeMeasure(props.temp, "C");
   return (
     <StyledCard>
-      <svg width="80" heigth="80">
+      <p>{hours + ":" + minutes}</p>
+      <Svg width="75px" heigth="75px">
         <use xlinkHref={"#cloudy"} />
-      </svg>
-      <p>{props.temp}</p>
+      </Svg>
+      <p>{temp + "℃"}</p>
     </StyledCard>
   );
 };

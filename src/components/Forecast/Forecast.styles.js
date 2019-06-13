@@ -1,19 +1,20 @@
 import styled from "styled-components";
-import { Layout } from "antd";
 
 const Main = styled.div`
-  width: 75%;
+  display: flex;
+  justify-content: center;
 `;
-const Content = styled(Layout.Content)`
-  display: table;
-  table-layout: fixed;
-  border-spacing: 10px;
+const Content = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
 `;
-
-const Header = styled.div``;
 const Container = styled.div`
-  display: table;
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
+  justify-content: center;
 `;
 
-export { Main, Container, Header, Content };
+export { Main, Container, Content };
