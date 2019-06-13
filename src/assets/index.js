@@ -1,18 +1,28 @@
 import "./svg";
 
-export default (time, rain, clouds, temp) => {
+export default (isNight, rain, clouds, temp) => {
+  const tmOfDay = isNight ? "night" : "day";
   const icons = {};
-  switch (temp) {
-    case temp >= 15:
-      icons = { ...icons, therm: "#thermometer-hot" };
-      break;
-    case temp < 15:
-      icons = { ...icons, therm: "#thermometer-cold" };
-    default:
-      break;
+  icons.therm = temp >= 15 ? "thermometer-hot" : "thermometer-cold";
+  let rainPoint = null;
+  if (rain) {
+    rainPoint = Math.floor(+rain["3h"]);
   }
-  switch (main) {
-    case "Clouds":
-      return "a";
+  let cloudPoint = null;
+  if (clouds) {
+    cloudPoint = Math.floor(+clouds.all / 24);
   }
+  if (rainPoint !== null) {
+    icons.icon =
+      cloudPoint >= 2 || isNight
+        ? `rainy-${rainPoint}`
+        : `rainy-sun${rainPoint}`;
+  } else {
+    if (cloudPoint === 4) {
+      return { ...icons, icon: "cloudy" };
+    }
+    icons.icon =
+      cloudPoint !== null ? `cloudy-${tmOfDay}-${cloudPoint}` : `${tmOfDay}`;
+  }
+  return icons;
 };

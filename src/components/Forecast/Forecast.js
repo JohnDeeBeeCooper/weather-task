@@ -26,6 +26,10 @@ class Forecast extends Component {
     });
   }
   renderForecast() {
+    const { forecast, id } = this.props;
+    const newData = forecast.filter((item, idx) => {
+      return idx !== id ? item : null;
+    });
     return (
       <Container>
         <div>
@@ -55,7 +59,7 @@ class Forecast extends Component {
 const mapState = ({ data }) => ({
   forecast: data.forecast,
   city: data.city,
-  id
+  id: data.id
 });
 const mapDispatch = ({ data: { getData, getCity, changeId } }) => ({
   getData: data => getData(data),

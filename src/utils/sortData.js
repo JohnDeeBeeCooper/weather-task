@@ -13,10 +13,12 @@ export default arr => {
   let j = 0;
   while (j++ < arr.length - 1) {
     const numDay = getNumDay(arr[j].dt);
-    console.log(arr[j]);
     if (numDay !== day) {
-      const newDate = new Date(arr[j].dt * 1000);
-      const { weekDay, monthDay } = getWeekDay(day, newDate.getUTCMonth());
+      const newDate = new Date(arr[j - 1].dt * 1000);
+      const { weekDay, monthDay } = getWeekDay(
+        newDate.getUTCDay(),
+        newDate.getUTCMonth()
+      );
       const preArr = arr.slice(i, j);
       const weather = filterArray(preArr);
       newArr = [...newArr, { weekDay, monthDay, day, weather }];

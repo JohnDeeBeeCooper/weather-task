@@ -1,6 +1,6 @@
 export default (mes, tran) => {
   switch (tran) {
-    case "K":
+    case "F":
       return Math.round(mes + 273);
     case "C":
       return Math.round(mes - 273);
