@@ -3,8 +3,9 @@ import styled, { css } from "styled-components";
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  max-width: 900px;
+  justify-content: flex-start;
+  width: 900px;
+  min-width: 450px;
 `;
 const Text = styled.p`
   font-weight: 600;

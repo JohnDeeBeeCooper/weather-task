@@ -10,7 +10,21 @@ export default arr => {
     const hours = timeCorrection(date.getUTCHours());
     const minutes = timeCorrection(date.getUTCMinutes());
     const temp = Math.round(item.main.temp - 273.15);
+    const main = item.weather[0].main;
+    let point = 0;
+    switch (main) {
+      case "Rain":
+        point = item.rain["3h"];
+        break;
+      case "Clouds":
+        point = item.clouds.all;
+        break;
+      default:
+        break;
+    }
     const obj = {
+      main,
+      point,
       temp: temp,
       wind: {
         speed: item.wind.speed,

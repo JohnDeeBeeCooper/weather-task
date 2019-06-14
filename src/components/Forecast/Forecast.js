@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import API from "../../api/";
 import { connect } from "react-redux";
 import Card from "./Card/Card";
-import { Main, Container, Content } from "./Forecast.styles";
+import { Main, Container, Content, Row } from "./Forecast.styles";
 import { Spin, Card as AntdCard } from "antd";
 import sortData from "../../utils/sortData";
 import Today from "./Today/Today";
@@ -17,7 +17,6 @@ class Forecast extends Component {
         `forecast?lat=${latitude}&lon=${longitude}&APPID=b34f35e19026981edb6a852df2630cad`
       )
         .then(res => {
-          console.log(res.data);
           getCity(res.data.city.name);
           const sortingData = sortData(res.data.list);
           getData(sortingData);
@@ -27,6 +26,9 @@ class Forecast extends Component {
         });
     });
   }
+  handleClick = id => {
+    this.props.changeId(id);
+  };
   renderForecast() {
     const { forecast, id, point } = this.props;
     const obj = { ...forecast[id], point };
@@ -34,7 +36,12 @@ class Forecast extends Component {
       if (idx === id) {
         return null;
       }
-      const newItem = { ...item, weather: dailyWeather(item.weather) };
+      const newItem = {
+        ...item,
+        weather: dailyWeather(item.weather),
+        func: this.handleClick,
+        point
+      };
       return newItem;
     });
     return (
@@ -46,6 +53,7 @@ class Forecast extends Component {
           <AntdCard>
             <Today {...obj} />
           </AntdCard>
+          <Row>{newData.map(item => (item ? <Card {...item} /> : null))}</Row>
         </Content>
       </Container>
     );

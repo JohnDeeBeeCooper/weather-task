@@ -9,6 +9,7 @@ const getNumDay = date => {
 export default arr => {
   let newArr = [];
   let day = getNumDay(arr[0].dt);
+  let id = 0;
   let i = 0;
   let j = 0;
   while (j++ < arr.length - 1) {
@@ -23,10 +24,11 @@ export default arr => {
       const weather = filterArray(preArr);
       newArr = [
         ...newArr,
-        { weekDay, monthDay, day, year: newDate.getUTCFullYear(), weather }
+        { id, weekDay, monthDay, day, year: newDate.getUTCFullYear(), weather }
       ];
       i = j;
       day = numDay;
+      id++;
     }
   }
   return newArr;

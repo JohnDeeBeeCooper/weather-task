@@ -7,7 +7,7 @@ const Main = styled.div`
 `;
 const Content = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
 `;
@@ -17,5 +17,10 @@ const Container = styled.div`
   margin: 0 auto;
   justify-content: center;
 `;
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
-export { Main, Container, Content };
+export { Main, Container, Content, Row };

@@ -1,6 +1,6 @@
 export default deg => {
   switch (true) {
-    case deg >= 348.75 && deg < 11.25:
+    case deg >= 348.75 || deg < 11.25:
       return "N";
     case deg >= 11.25 && deg < 33.75:
       return "NNE";

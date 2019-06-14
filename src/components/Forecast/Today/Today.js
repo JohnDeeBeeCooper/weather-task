@@ -10,12 +10,13 @@ const Today = ({ weekDay, monthDay, day, year, weather, point }) => {
   return (
     <Container>
       <Col>
-        <Text
-          typeText={"header"}
-        >{`${weekDay}, ${day} ${monthDay} ${year}`}</Text>
-        <Text typeText={"header"}>{`${presently.time}`}</Text>
-        <Text typeText={"header"}>{presently.desc}</Text>
         <Col>
+          <div>
+            <Text
+              typeText={"header"}
+            >{`${weekDay}, ${day} ${monthDay} ${year}`}</Text>
+            <Text typeText={"header"}>{presently.desc}</Text>
+          </div>
           <svg width="200" height="200">
             <use xlinkHref={`#${presently.icons.icon}`} />
           </svg>
@@ -42,33 +43,35 @@ const Today = ({ weekDay, monthDay, day, year, weather, point }) => {
           </Row>
         </Col>
       </Col>
-      <Daily>
-        {filtWeather.map((item, id) => (
-          <Card key={id}>
-            <Hourly>
-              <Col>
-                <Row>
-                  <Text typeText={"temp"}>{item.time}</Text>
-                  <svg width="100" height="100">
-                    <use xlinkHref={`#${item.icons.icon}`} />
-                  </svg>
-                </Row>
-                <Row>
+      <Col>
+        <Daily>
+          {filtWeather.map((item, id) => (
+            <Card key={id}>
+              <Hourly>
+                <Col>
                   <Row>
-                    <svg width="40" height="40">
-                      <use xlinkHref={`#${item.icons.therm}`} />
+                    <Text typeText={"temp"}>{item.time}</Text>
+                    <svg width="100" height="100">
+                      <use xlinkHref={`#${item.icons.icon}`} />
                     </svg>
-                    <Text typeText={"temp"}>
-                      {item.temp > 0 ? `+${item.temp}` : `${item.temp}`}
-                      {msrmnt}
-                    </Text>
                   </Row>
-                </Row>
-              </Col>
-            </Hourly>
-          </Card>
-        ))}
-      </Daily>
+                  <Row>
+                    <Row>
+                      <svg width="40" height="40">
+                        <use xlinkHref={`#${item.icons.therm}`} />
+                      </svg>
+                      <Text typeText={"temp"}>
+                        {item.temp > 0 ? `+${item.temp}` : `${item.temp}`}
+                        {msrmnt}
+                      </Text>
+                    </Row>
+                  </Row>
+                </Col>
+              </Hourly>
+            </Card>
+          ))}
+        </Daily>
+      </Col>
     </Container>
   );
 };

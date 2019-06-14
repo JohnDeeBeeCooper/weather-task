@@ -14,7 +14,7 @@ export default (isNight, rain, clouds, temp) => {
       icons.therm = "thermometer-cold";
       break;
     default:
-      console.log("err :" + temp);
+      console.log("err: " + temp);
       break;
   }
   let rainPoint = null;
