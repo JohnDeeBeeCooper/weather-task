@@ -1,9 +1,17 @@
 import React from "react";
-import { Container, Hourly, Daily, Text, Temp, Row, Col } from "./Today.styles";
-import { Card } from "antd";
+import {
+  Container,
+  Hourly,
+  Daily,
+  Text,
+  Temp,
+  Row,
+  Col,
+  Day
+} from "./Today.styles";
 import "../../../assets/svg";
 
-const Today = ({ weekDay, monthDay, day, year, weather, point }) => {
+const Today = ({ weekDay, monthDay, day, year, weather, point, city }) => {
   const presently = weather[0];
   const msrmnt = point === "C" ? "℃" : "°F";
   const filtWeather = weather.slice(1, weather.length);
@@ -12,6 +20,7 @@ const Today = ({ weekDay, monthDay, day, year, weather, point }) => {
       <Col>
         <Col>
           <div>
+            <Text typeText={"header"}>{city}</Text>
             <Text
               typeText={"header"}
             >{`${weekDay}, ${day} ${monthDay} ${year}`}</Text>
@@ -37,16 +46,16 @@ const Today = ({ weekDay, monthDay, day, year, weather, point }) => {
                 <use xlinkHref={"#wind"} />
               </svg>
               <Text typeText={"header"}>
-                {presently.wind.speed}, {presently.wind.direction}
+                {presently.wind.speed} {presently.wind.direction}
               </Text>
             </Row>
           </Row>
         </Col>
       </Col>
-      <Col>
+      <Col style={{ justifyContent: "flex-end" }}>
         <Daily>
           {filtWeather.map((item, id) => (
-            <Card key={id}>
+            <Day key={id}>
               <Hourly>
                 <Col>
                   <Row>
@@ -68,7 +77,7 @@ const Today = ({ weekDay, monthDay, day, year, weather, point }) => {
                   </Row>
                 </Col>
               </Hourly>
-            </Card>
+            </Day>
           ))}
         </Daily>
       </Col>

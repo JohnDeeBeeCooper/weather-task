@@ -16,18 +16,22 @@ const Card = ({
   const newMaxTemp = maxTemp > 0 ? `+${maxTemp}` : maxTemp;
   return (
     <StyledCard onClick={() => func(id)}>
-      <Text>{`${weekDay}, ${day} ${monthDay}`}</Text>
-      <Svg width="100px" heigth="100px">
-        <use xlinkHref={`#${icons.icon}`} />
-      </Svg>
       <Row>
-        <Svg therm width="50px" heigth="50px">
-          <use xlinkHref={`#${icons.therm}`} />
-        </Svg>
         <Col>
-          <Text point>{`${newMinTemp}${msrmnt}`}</Text>
-          <Text point>{`${newMaxTemp}${msrmnt}`}</Text>
+          <Text>{`${weekDay}, ${day} ${monthDay}`}</Text>
+          <Row>
+            <Svg therm width="50px" heigth="50px">
+              <use xlinkHref={`#${icons.therm}`} />
+            </Svg>{" "}
+            <Col>
+              <Text point>{`${newMinTemp}${msrmnt}`}</Text>
+              <Text point>{`${newMaxTemp}${msrmnt}`}</Text>
+            </Col>
+          </Row>
         </Col>
+        <Svg width="100px" heigth="100px">
+          <use xlinkHref={`#${icons.icon}`} />
+        </Svg>
       </Row>
     </StyledCard>
   );

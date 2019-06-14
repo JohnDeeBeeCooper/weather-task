@@ -43,5 +43,8 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
 `;
+const Day = styled.div`
+  padding: 5px;
+`;
 
-export { Container, Hourly, Daily, Text, Row, Col };
+export { Container, Hourly, Daily, Text, Row, Col, Day };

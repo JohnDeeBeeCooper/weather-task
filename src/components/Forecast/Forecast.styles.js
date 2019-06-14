@@ -23,4 +23,12 @@ const Row = styled.div`
   justify-content: space-between;
 `;
 
-export { Main, Container, Content, Row };
+const Text = styled.p`
+  font-size: 24px;
+`;
+
+const Menu = styled.div`
+  padding: 15px;
+`;
+
+export { Main, Container, Content, Row, Text, Menu };

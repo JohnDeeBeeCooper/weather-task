@@ -15,6 +15,10 @@ export const data = {
     },
     changeId(state, payload) {
       return { ...state, id: payload };
+    },
+    changeMeasurement(state, payload) {
+      const point = state.point === "C" ? "F" : "C";
+      return { ...state, point };
     }
   },
   effects: dispatch => ({})

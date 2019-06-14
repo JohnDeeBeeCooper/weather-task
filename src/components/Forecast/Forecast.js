@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import API from "../../api/";
 import { connect } from "react-redux";
 import Card from "./Card/Card";
-import { Main, Container, Content, Row } from "./Forecast.styles";
-import { Spin, Card as AntdCard } from "antd";
+import { Main, Container, Content, Row, Text, Menu } from "./Forecast.styles";
+import { Spin, Card as AntdCard, Switch } from "antd";
 import sortData from "../../utils/sortData";
 import Today from "./Today/Today";
 import dailyWeather from "../../utils/dailyWeather";
+import changeMeasure from "../../utils/changeMeasure";
 
 class Forecast extends Component {
   componentDidMount() {
@@ -29,9 +30,23 @@ class Forecast extends Component {
   handleClick = id => {
     this.props.changeId(id);
   };
+  handleChange = () => {
+    const { forecast, point, getData, changeMeasurement } = this.props;
+    changeMeasurement();
+    const newData = forecast.map(item => {
+      const weather = item.weather.map(hour => {
+        const temp = changeMeasure(hour.temp, point);
+        const newHour = { ...hour, temp };
+        return newHour;
+      });
+      return { ...item, weather };
+    });
+    getData(newData);
+  };
   renderForecast() {
-    const { forecast, id, point } = this.props;
-    const obj = { ...forecast[id], point };
+    const { forecast, id, point, city, changeMeasurement } = this.props;
+    const obj = { ...forecast[id], point, city };
+    const msrmnt = point === "C" ? "℃" : "°F";
     const newData = forecast.map((item, idx) => {
       if (idx === id) {
         return null;
@@ -46,15 +61,18 @@ class Forecast extends Component {
     });
     return (
       <Container>
-        <div>
-          <p>{this.props.city}</p>
-        </div>
-        <Content>
-          <AntdCard>
-            <Today {...obj} />
-          </AntdCard>
-          <Row>{newData.map(item => (item ? <Card {...item} /> : null))}</Row>
-        </Content>
+        <Row>
+          <Content>
+            <AntdCard>
+              <Today {...obj} />
+            </AntdCard>
+            <Row>{newData.map(item => (item ? <Card {...item} /> : null))}</Row>
+          </Content>
+          <Menu>
+            <Text>{`Change to ${msrmnt}`}</Text>
+            <Switch onChange={() => this.handleChange(point)} />
+          </Menu>
+        </Row>
       </Container>
     );
   }
@@ -77,10 +95,13 @@ const mapState = ({ data }) => ({
   id: data.id,
   point: data.point
 });
-const mapDispatch = ({ data: { getData, getCity, changeId } }) => ({
+const mapDispatch = ({
+  data: { getData, getCity, changeId, changeMeasurement }
+}) => ({
   getData: data => getData(data),
   getCity: city => getCity(city),
-  changeId: id => changeId(id)
+  changeId: id => changeId(id),
+  changeMeasurement: () => changeMeasurement()
 });
 
 export default connect(
