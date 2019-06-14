@@ -17,7 +17,8 @@ export default arr => {
         direction: windDirection(item.wind.deg)
       },
       time: `${hours}:${minutes}`,
-      icons: getSvgName(isNight, item.rain, item.clouds, temp)
+      icons: getSvgName(isNight, item.rain, item.clouds, temp),
+      desc: item.weather[0].description
     };
     const newAcc = [...acc, obj];
     return newAcc;

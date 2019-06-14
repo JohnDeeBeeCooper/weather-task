@@ -3,8 +3,10 @@ import API from "../../api/";
 import { connect } from "react-redux";
 import Card from "./Card/Card";
 import { Main, Container, Content } from "./Forecast.styles";
-import { Spin } from "antd";
+import { Spin, Card as AntdCard } from "antd";
 import sortData from "../../utils/sortData";
+import Today from "./Today/Today";
+import dailyWeather from "../../utils/dailyWeather";
 
 class Forecast extends Component {
   componentDidMount() {
@@ -26,9 +28,14 @@ class Forecast extends Component {
     });
   }
   renderForecast() {
-    const { forecast, id } = this.props;
-    const newData = forecast.filter((item, idx) => {
-      return idx !== id ? item : null;
+    const { forecast, id, point } = this.props;
+    const obj = { ...forecast[id], point };
+    const newData = forecast.map((item, idx) => {
+      if (idx === id) {
+        return null;
+      }
+      const newItem = { ...item, weather: dailyWeather(item.weather) };
+      return newItem;
     });
     return (
       <Container>
@@ -36,9 +43,9 @@ class Forecast extends Component {
           <p>{this.props.city}</p>
         </div>
         <Content>
-          {/* {newData.map((item, id) => (
-            <Card key={id} temp={item.main.temp} date={item.dt} />
-          ))} */}
+          <AntdCard>
+            <Today {...obj} />
+          </AntdCard>
         </Content>
       </Container>
     );
@@ -47,7 +54,7 @@ class Forecast extends Component {
     return (
       <Main>
         {Object.entries(this.props.forecast).length === 0 ? (
-          <Spin />
+          <Spin size="large" />
         ) : (
           this.renderForecast()
         )}
@@ -59,7 +66,8 @@ class Forecast extends Component {
 const mapState = ({ data }) => ({
   forecast: data.forecast,
   city: data.city,
-  id: data.id
+  id: data.id,
+  point: data.point
 });
 const mapDispatch = ({ data: { getData, getCity, changeId } }) => ({
   getData: data => getData(data),

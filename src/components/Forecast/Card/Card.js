@@ -7,8 +7,6 @@ const Card = props => {
   const date = new Date(props.date * 1000);
   const hours = date.getHours(props.date);
   const minutes = date.getMinutes(props.date);
-  console.log(date);
-  const temp = changeMeasure(props.temp, "C");
   return (
     <StyledCard>
       <p>{hours + ":" + minutes}</p>

@@ -1,5 +1,5 @@
 export default deg => {
-  switch (Number(deg)) {
+  switch (true) {
     case deg >= 348.75 && deg < 11.25:
       return "N";
     case deg >= 11.25 && deg < 33.75:
@@ -33,6 +33,7 @@ export default deg => {
     case deg >= 326.25 && deg < 348.75:
       return "NNW";
     default:
+      console.log(deg);
       return "TEST";
   }
 };

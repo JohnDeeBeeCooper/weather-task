@@ -21,7 +21,10 @@ export default arr => {
       );
       const preArr = arr.slice(i, j);
       const weather = filterArray(preArr);
-      newArr = [...newArr, { weekDay, monthDay, day, weather }];
+      newArr = [
+        ...newArr,
+        { weekDay, monthDay, day, year: newDate.getUTCFullYear(), weather }
+      ];
       i = j;
       day = numDay;
     }

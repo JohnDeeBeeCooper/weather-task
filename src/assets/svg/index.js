@@ -1,19 +1,23 @@
-import Cloudy from "./cloudy.svg";
-import CloudyDay1 from "./cloudy-day-1.svg";
-import CloudyDay2 from "./cloudy-day-2.svg";
-import CloudyDay3 from "./cloudy-day-3.svg";
-import CloudyNight1 from "./cloudy-night-1.svg";
-import CloudyNight2 from "./cloudy-night-2.svg";
-import CloudyNight3 from "./cloudy-night-3.svg";
-import Day from "./day.svg";
-import Night from "./night.svg";
-import Rain1 from "./rainy-1.svg";
-import Rain2 from "./rainy-2.svg";
-import Rain3 from "./rainy-3.svg";
-import RainSun1 from "./rainy-sun1.svg";
-import RainSun2 from "./rainy-sun2.svg";
-import RainSun3 from "./rainy-sun3.svg";
-import Thunder from "./thunder.svg";
+import Cloudy from "./icons/cloudy.svg";
+import CloudyDay1 from "./icons/cloudy-day-1.svg";
+import CloudyDay2 from "./icons/cloudy-day-2.svg";
+import CloudyDay3 from "./icons/cloudy-day-3.svg";
+import CloudyNight1 from "./icons/cloudy-night-1.svg";
+import CloudyNight2 from "./icons/cloudy-night-2.svg";
+import CloudyNight3 from "./icons/cloudy-night-3.svg";
+import Day from "./icons/day.svg";
+import Night from "./icons/night.svg";
+import Rain1 from "./icons/rainy-1.svg";
+import Rain2 from "./icons/rainy-2.svg";
+import Rain3 from "./icons/rainy-3.svg";
+import RainSun1 from "./icons/rainy-sun1.svg";
+import RainSun2 from "./icons/rainy-sun2.svg";
+import RainSun3 from "./icons/rainy-sun3.svg";
+import Thunder from "./icons/thunder.svg";
+import ThermometerCold from "./icons/thermometer-cold.svg";
+import ThermometerHot from "./icons/thermometer-hot.svg";
+import ThermometerAvg from "./icons/thermometer-avg.svg";
+import Wind from "./icons/wind.svg";
 
 export {
   Cloudy,
@@ -31,5 +35,9 @@ export {
   RainSun1,
   RainSun2,
   RainSun3,
-  Thunder
+  Thunder,
+  ThermometerAvg,
+  ThermometerCold,
+  ThermometerHot,
+  Wind
 };
